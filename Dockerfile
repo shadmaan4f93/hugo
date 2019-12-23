@@ -39,7 +39,7 @@ VOLUME /site
 WORKDIR /site
 
 # Expose port for live server
-EXPOSE 1313
+EXPOSE 80
 
 ENTRYPOINT ["hugo"]
 CMD ["--help"]
