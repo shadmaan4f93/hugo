@@ -2,8 +2,11 @@ version: '3'
 
 services:
   hugo:
-    image: yanqd0/hugo
+    image: hugo-custome
+    restart: always
+    build: .
     volumes:
-      - .:/srv/hugo
+      - ./blog:/blog/
     ports:
-      - 80:80
+      - 1313:80
+
