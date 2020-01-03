@@ -1,12 +1,10 @@
-version: '3'
+version: '2'
 
 services:
   hugo:
-    image: hugo-custome
-    restart: always
-    build: .
+    image: yanqd0/hugo
     volumes:
-      - ./blog:/blog/
+      - ./examples/multilingual:/srv/hugo
     ports:
-      - 1313:80
-
+      - 80:1313
+    restart: unless-stopped

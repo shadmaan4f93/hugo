@@ -26,7 +26,7 @@ RUN mage hugo && mage install
 
 # ---
 
-FROM alpine:3.10
+FROM alpine:3.11
 
 COPY --from=build /go/bin/hugo /usr/bin/hugo
 
@@ -34,11 +34,12 @@ COPY --from=build /go/bin/hugo /usr/bin/hugo
 # ca-certificates are required to fetch outside resources (like Twitter oEmbeds)
 RUN apk update && \
     apk add --no-cache ca-certificates libc6-compat libstdc++
-WORKDIR blog
-COPY ./blog /blog
-VOLUME /blog
-ENTRYPOINT ["hugo"]
 
-CMD ["server"]
-EXPOSE 80
+VOLUME /site
+WORKDIR /site
+
+# Expose port for live server
 EXPOSE 1313
+
+ENTRYPOINT ["hugo"]
+CMD ["--help"]
